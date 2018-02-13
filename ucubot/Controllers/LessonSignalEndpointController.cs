@@ -26,7 +26,7 @@ namespace ucubot.Controllers
             var connectionString = _configuration.GetConnectionString("BotDatabase");
             using (var conn = new MySqlConnection(connectionString))
             {
-                conn.Open();
+            	conn.Open();
                 var adapter = new MySqlDataAdapter("SELECT * FROM lesson_signal", conn);
                 
                 var dataset = new DataSet();
@@ -66,7 +66,7 @@ namespace ucubot.Controllers
                 var row = dataset.Tables[0].Rows[0];
                 var signalDto = new LessonSignalDto
                 {
-                    Timestamp = (DateTime) row["timestamp_"],
+                	Timestamp = (DateTime) row["timestamp_"],
                     Type = (LessonSignalType) row["signal_type"],
                     UserId = (string) row["user_id"]
                 };
@@ -88,7 +88,7 @@ namespace ucubot.Controllers
                     "INSERT INTO lesson_signal (user_id, signal_type) VALUES (@userId, @signalType);";
                 command.Parameters.AddRange(new[]
                 {
-                    new MySqlParameter("userId", userId),
+                	new MySqlParameter("userId", userId),
                     new MySqlParameter("signalType", signalType)
                 });
                 await command.ExecuteNonQueryAsync();
@@ -106,7 +106,7 @@ namespace ucubot.Controllers
                 var command = conn.CreateCommand();
                 command.CommandText =
                     "DELETE FROM lesson_signal WHERE ID = @id;";
-                command.Parameters.Add(new MySqlParameter("id", id));
+            	command.Parameters.Add(new MySqlParameter("id", id));
                 await command.ExecuteNonQueryAsync();
             }
             
