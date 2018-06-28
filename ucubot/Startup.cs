@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
 using Ninject;
 using Ninject.Activation;
 using Ninject.Infrastructure.Disposal;
 using ucubot.Infrastructure;
+using ucubot.DBCode;
 
 namespace ucubot
 {
@@ -54,8 +56,9 @@ namespace ucubot
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddRequestScopingMiddleware(() => scopeProvider.Value = new Scope());
-            services.AddCustomControllerActivation(Resolve);
-            services.AddCustomViewComponentActivation(Resolve);
+//            services.AddCustomControllerActivation(Resolve);
+//            services.AddCustomViewComponentActivation(Resolve);
+            services.AddSingleton<IConfiguration>(f => Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
