@@ -15,20 +15,20 @@ namespace ucubot.DBCode
 {
     [Route("api/[controller]")]
 
-    public class StudentSignalEndpointN : IStudentSignalRepository
+    public class StudentSignalsEndpointN : IStudentSignalsRepository
     {
         private readonly IConfiguration _configuration;
         private readonly MySqlConnection _msqlConnection;
         private readonly string _connectionString;
 
-        public StudentSignalEndpointN(IConfiguration configuration)
+        public StudentSignalsEndpointN(IConfiguration configuration)
         {
             _configuration = configuration;
             _connectionString = _configuration.GetConnectionString("BotDatabase");
             _msqlConnection = new MySqlConnection(_connectionString);
         }
 
-        public IEnumerable<StudentSignal> ShowStudentSignalsN()
+        public IEnumerable<StudentSignals> ShowStudentSignalsN()
         {
              try
              {
