@@ -16,14 +16,14 @@ namespace ucubot.Controllers
     [Route("api/[controller]")]
     public class StudentSignalsEndpointController : Controller
     {
-        private readonly IStudentSignalRepository _studentSignalRepository;
-        public StudentSignalsEndpointController(IStudentSignalRepository studentSignalRepository)
+        private readonly IStudentSignalsRepository _studentSignalsRepository;
+        public StudentSignalsEndpointController(IStudentSignalsRepository studentSignalsRepository)
         {
-            _studentSignalRepository = studentSignalRepository;
+            _studentSignalsRepository = studentSignalsRepository;
         }
 
         [HttpGet]
-        public IEnumerable<StudentSignal> ShowSignals()
+        public IEnumerable<StudentSignals> ShowSignals()
         {
             return _studentSignalRepository.ShowSignalsN();
         }
