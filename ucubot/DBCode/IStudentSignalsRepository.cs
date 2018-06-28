@@ -3,8 +3,8 @@ using ucubot.Model;
 
 namespace ucubot.DBCode
 {
-    public interface IStudentSignal
+    public interface IStudentSignals
     {
-        IEnumerable<StudentSignal> ShowSignalsN();
+        IEnumerable<StudentSignals> ShowSignalsN();
     }
 }
