@@ -25,7 +25,7 @@ namespace ucubot.Controllers
         [HttpGet]
         public IEnumerable<StudentSignals> ShowSignals()
         {
-            return _studentSignalRepository.ShowSignalsN();
+            return _studentSignalsRepository.ShowStudentSignalsN();
         }
     }
 }
