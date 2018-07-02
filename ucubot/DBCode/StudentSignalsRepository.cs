@@ -15,13 +15,13 @@ namespace ucubot.DBCode
 {
     [Route("api/[controller]")]
 
-    public class StudentSignalsEndpointN : IStudentSignalsRepository
+    public class StudentSignalsRepository : IStudentSignalsRepository
     {
         private readonly IConfiguration _configuration;
         private readonly MySqlConnection _msqlConnection;
         private readonly string _connectionString;
 
-        public StudentSignalsEndpointN(IConfiguration configuration)
+        public StudentSignalsRepository(IConfiguration configuration)
         {
             _configuration = configuration;
             _connectionString = _configuration.GetConnectionString("BotDatabase");
@@ -34,7 +34,7 @@ namespace ucubot.DBCode
              {
                 _msqlConnection.Open();
                 var comm = "SELECT first_name AS FirstName, last_name AS LastName, SignalType, Count FROM student_signals;";
-                var lst = _msqlConnection.Query<LessonSignalDto>(comm).ToList();
+                 var lst = _msqlConnection.Query<StudentSignals>(comm).AsList();
                 _msqlConnection.Close();
                 return lst;
              }
