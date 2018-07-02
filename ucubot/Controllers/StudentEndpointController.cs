@@ -17,7 +17,6 @@ namespace ucubot.Controllers
     public class StudentEndpointController : Controller
     {
         private readonly IStudentRepository _studentRepository;
-        private HttpClient _client;
 
         public StudentEndpointController(IStudentRepository studentRepository)
         {
