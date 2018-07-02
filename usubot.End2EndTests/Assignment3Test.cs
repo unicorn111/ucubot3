@@ -102,7 +102,7 @@ namespace usubot.End2EndTests
                 .Join(valuesStudents, l => l.UserId, s => s.UserId, Tuple.Create)
                 .GroupBy(l => new {l.Item2.Id, l.Item2.FirstName, l.Item2.LastName, l.Item1.Type})
                 .ToDictionary(t => t.Key, t => t.Count())
-                .Select(d => new StudentSignal
+                .Select(d => new StudentSignals
                 {
                     FirstName = d.Key.FirstName,
                     LastName = d.Key.LastName,
@@ -112,7 +112,7 @@ namespace usubot.End2EndTests
 
             // get aggregation results
             var getAggResponse = await _client.GetStringAsync("/api/StudentSignalsEndpoint");
-            var aggregated = Utils.ParseJson<StudentSignal[]>(getAggResponse);
+            var aggregated = Utils.ParseJson<StudentSignals[]>(getAggResponse);
             var sumActual = aggregated.Select(a => a.Count).Sum();
             var sumExpected = aggregatedExpected.Select(a => a.Count).Sum();
             sumActual.Should().Be(sumExpected);
